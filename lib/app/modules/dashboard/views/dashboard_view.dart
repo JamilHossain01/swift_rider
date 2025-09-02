@@ -17,8 +17,9 @@ class DashboardView extends GetView<DashboardController> {
 
     final screens = [
       HomeView(),
-      RideView(),
       MessageView(),
+      RideView(),
+
       ProfileView(),
 
     ];

@@ -17,6 +17,8 @@ class CustomText extends StatelessWidget {
     this.overflow = TextOverflow.fade,
     this.letterSpace,
     this.underline = false,
+    this.useSFPro = false, // Optional: toggle sf-pro-display
+    this.initialValue, // Optional initial value (e.g., points or text)
   });
 
   final double left;
@@ -31,26 +33,56 @@ class CustomText extends StatelessWidget {
   final int? maxLines;
   final TextOverflow overflow;
   final dynamic letterSpace;
-  final bool underline; // Boolean flag to decide whether to underline
+  final bool underline;
+  final bool useSFPro;
+  final dynamic initialValue;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: left, right: right, top: top, bottom: bottom),
-      child: Text(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-        style: GoogleFonts.poppins(
-          letterSpacing: letterSpace,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: color,
-          decorationColor: Colors.grey,
-          decoration: underline ? TextDecoration.underline : TextDecoration.none, // Conditionally apply underline
+    final displayText = initialValue != null
+        ? (initialValue is num ? initialValue.toString() : initialValue.toString())
+        : text;
+
+    try {
+      return Padding(
+        padding: EdgeInsets.only(left: left, right: right, top: top, bottom: bottom),
+        child: Text(
+          displayText,
+          textAlign: textAlign,
+          maxLines: maxLines,
+          overflow: overflow,
+          style: GoogleFonts.getFont(
+            useSFPro ? 'sf-pro-display' : 'poppins',
+            letterSpacing: letterSpace,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: color,
+            decorationColor: Colors.grey,
+            decoration: underline ? TextDecoration.underline : TextDecoration.none,
+          ).copyWith(
+            fontFamilyFallback: ['poppins'], // Fallback to poppins if sf-pro-display fails
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      print('Font loading error: $e'); // Log the error for debugging
+      return Padding(
+        padding: EdgeInsets.only(left: left, right: right, top: top, bottom: bottom),
+        child: Text(
+          displayText,
+          textAlign: textAlign,
+          maxLines: maxLines,
+          overflow: overflow,
+          style: GoogleFonts.poppins(
+            letterSpacing: letterSpace,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: color,
+            decorationColor: Colors.grey,
+            decoration: underline ? TextDecoration.underline : TextDecoration.none,
+          ),
+        ),
+      );
+    }
   }
 }

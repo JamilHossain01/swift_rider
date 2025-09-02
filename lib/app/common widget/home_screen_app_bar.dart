@@ -12,9 +12,8 @@ class HomeCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool centerTitle;
   final Color? backgroundColor;
   final bool forceMaterialTransparency;
-  final bool? automaticallyImplyLeading;
+  final bool showBackButton; // 👈 New flag
   final List<Widget>? actions;
-  final Widget? leading;
 
   const HomeCustomAppBar({
     Key? key,
@@ -24,8 +23,7 @@ class HomeCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = Colors.transparent,
     this.forceMaterialTransparency = true,
     this.actions,
-    this.leading,
-    this.automaticallyImplyLeading,
+    this.showBackButton = true, // default = show
     this.onTap,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
@@ -37,38 +35,39 @@ class HomeCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       forceMaterialTransparency: true,
-      automaticallyImplyLeading: automaticallyImplyLeading ?? true,
+      automaticallyImplyLeading: false, // we handle leading manually
       backgroundColor: backgroundColor,
       title: Text(
         title,
-        style: GoogleFonts.poppins( // Changed to Poppins font
+        style: GoogleFonts.poppins(
           fontSize: fontSize ?? 18.h,
           fontWeight: FontWeight.w500,
         ),
       ),
       centerTitle: centerTitle,
       actions: actions,
-      leading: leading ??
-          IconButton(
-            icon: Image.asset(
-              AppImages.leftArrow,
-              width: 40.w,
-              height: 40.h,
-            ),
-            onPressed: onTap ??
-                    () {
-                  if (Get.isSnackbarOpen) {
-                    Get.closeCurrentSnackbar();
-                  }
-                  if (Navigator.canPop(context)) {
-                    Navigator.pop(context);
-                  } else {
-                    if (kDebugMode) {
-                      print("No routes to pop");
-                    }
-                  }
-                },
-          ),
+      leading: showBackButton
+          ? IconButton(
+        icon: Image.asset(
+          AppImages.leftArrow,
+          width: 40.w,
+          height: 40.h,
+        ),
+        onPressed: onTap ??
+                () {
+              if (Get.isSnackbarOpen) {
+                Get.closeCurrentSnackbar();
+              }
+              if (Navigator.canPop(context)) {
+                Navigator.pop(context);
+              } else {
+                if (kDebugMode) {
+                  print("No routes to pop");
+                }
+              }
+            },
+      )
+          : null, // 👈 hides back button if false
       elevation: forceMaterialTransparency ? 0 : null,
     );
   }

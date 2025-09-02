@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:swift_ride/app/common%20widget/home_screen_app_bar.dart';
+import 'package:swift_ride/app/modules/setting/views/setting_view.dart';
 import '../../../common widget/custom text/custom_text_widget.dart';
 import '../../../uitilies/app_colors.dart';
 import '../../../uitilies/app_images.dart';
 import '../controllers/profile_controller.dart';
+import 'custom_support_screen.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
@@ -63,9 +65,13 @@ class ProfileView extends GetView<ProfileController> {
                 /// Menu List
                 _buildMenuItem(AppImages.payment, 'Payment',(){}),
                 _buildDashedDivider(),
-                _buildMenuItem(AppImages.customerSupport, 'Customer Support',(){}),
+                _buildMenuItem(AppImages.customerSupport, 'Customer Support',(){                    Get.to(()=>SettingView());
+                Get.to(()=>CustomerSupportScreen());
+                }),
                 _buildDashedDivider(),
-                _buildMenuItem(AppImages.settings, 'Settings',(){}),
+                _buildMenuItem(AppImages.settings, 'Settings',(){
+                  Get.to(()=>SettingView());
+                }),
                 _buildDashedDivider(),
                 _buildMenuItem(AppImages.logOut, 'Log out',(){}),
 

@@ -15,7 +15,10 @@ class AppImages {
   static String storyThree = "assets/images/story3.png";
   static String resturentImg = "assets/images/resturent.png";
   static String profileImage = "assets/images/profile.png";
-  static String masterCard = "assets/images/mastercard.png";
+  static String masterCard = "assets/images/Mastercard-Logo.png";
+  static String sNoti = "assets/images/sNoti.png";
+  static String cupon = "assets/images/Coupon.png";
+  static String sClock = "assets/images/Clock-Icon.png";
   static String paypal = "assets/images/paypal.png";
   static String forgetImg = "assets/images/forget.png";
   static String otp = "assets/images/otp_pic.png";
@@ -23,6 +26,9 @@ class AppImages {
   // static String role = "assets/images/rideS.png";
   static String role = "assets/images/main_logo.png";
 
+// tripeType assest
+  static String clockWhite = "assets/images/clock_white.png";
+  static String boltLeft = "assets/images/bold_arrow_left.png";
 
   //login
   static String google = "assets/images/google.png";
@@ -43,6 +49,7 @@ class AppImages {
 
   static String clockActive = "assets/images/clock_unactive.png";
   static String clockUnActive = "assets/images/clockIn_active.png";
+  static String deleteCard = "assets/images/Frame (3).png";
 
 
   static String homeActive = "assets/images/home_active.png";
@@ -63,7 +70,17 @@ class AppImages {
   static String settings = "assets/images/Location-Icon (2).png"; // Note: "rideS" might be a typo, consider "rides"
   static String logOut = "assets/images/Location-Icon (3).png"; // Note: "rideS" might be a typo, consider "rides"
   static String leftArrow = "assets/images/left-arrow (1) 1 (2).png"; // Note: "rideS" might be a typo, consider "rides"
+//Home
+  static String bell = "assets/images/bellN.png"; // Note: "rideS" might be a typo, consider "rides"
 
+  static String tripIconContainer = "assets/images/Trip Icon Container.png";
+  static String tripIconContainer1 = "assets/images/Trip Icon Container (1).png";
+  static String tripIconContainer2 = "assets/images/Trip Icon Container (2).png";
+  static String time = "assets/images/time.png";
+  static String calensers1 = "assets/images/Calenders1.png";
+  static String editeS = "assets/images/editeS.png";
+  static String map = "assets/images/maos.png";
+  static String plane = "assets/images/plane.png";
 
 
 }

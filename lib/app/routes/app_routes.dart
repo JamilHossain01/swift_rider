@@ -11,6 +11,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const RIDE = _Paths.RIDE;
   static const MESSAGE = _Paths.MESSAGE;
+  static const MAKE_RESERVATION = _Paths.MAKE_RESERVATION;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const RIDE = '/ride';
   static const MESSAGE = '/message';
+  static const MAKE_RESERVATION = '/make-reservation';
 }

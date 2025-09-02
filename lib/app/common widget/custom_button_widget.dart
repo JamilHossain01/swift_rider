@@ -18,6 +18,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? suffixIconColor;
   final VoidCallback onTap;
   final Gradient? gradient;
+  final BorderRadius? borderRadius;  // Added borderRadius parameter
 
   const CustomButtonWidget({
     super.key,
@@ -32,6 +33,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.suffixIconColor,
     this.iconSize,
     this.btnColor,
+    this.borderRadius,  // Added borderRadius constructor
   });
 
   @override
@@ -45,12 +47,12 @@ class CustomButtonWidget extends StatelessWidget {
           color: btnColor, // Set btnColor here, if provided
           gradient: gradient != null && btnColor == null
               ? LinearGradient(
-                  colors: [Color(0xFF0071BC), Color(0xFF003456)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight)
+              colors: [Color(0xFF0071BC), Color(0xFF003456)],
+              begin: Alignment.topLeft,
+              end: Alignment.topRight)
               : null,
           border: Border.all(color: borderColor ?? Colors.transparent),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius ?? BorderRadius.circular(8),  // Use borderRadius here
         ),
         child: Center(
           child: Padding(

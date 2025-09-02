@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-Book.eot');
+    src: local('ITC Slimbach Std Book'), local('SlimbachStd-Book'),
+        url('SlimbachStd-Book.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-Book.woff2') format('woff2'),
+        url('SlimbachStd-Book.woff') format('woff'),
+        url('SlimbachStd-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-BookItalic.eot');
+    src: local('ITC Slimbach Std Book Italic'), local('SlimbachStd-BookItalic'),
+        url('SlimbachStd-BookItalic.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-BookItalic.woff2') format('woff2'),
+        url('SlimbachStd-BookItalic.woff') format('woff'),
+        url('SlimbachStd-BookItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-BoldItalic.eot');
+    src: local('ITC Slimbach Std Bold Italic'), local('SlimbachStd-BoldItalic'),
+        url('SlimbachStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-BoldItalic.woff2') format('woff2'),
+        url('SlimbachStd-BoldItalic.woff') format('woff'),
+        url('SlimbachStd-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-Black.eot');
+    src: local('ITC Slimbach Std Black'), local('SlimbachStd-Black'),
+        url('SlimbachStd-Black.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-Black.woff2') format('woff2'),
+        url('SlimbachStd-Black.woff') format('woff'),
+        url('SlimbachStd-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-BlackItalic.eot');
+    src: local('ITC Slimbach Std Black Italic'), local('SlimbachStd-BlackItalic'),
+        url('SlimbachStd-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-BlackItalic.woff2') format('woff2'),
+        url('SlimbachStd-BlackItalic.woff') format('woff'),
+        url('SlimbachStd-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-Medium.eot');
+    src: local('ITC Slimbach Std Medium'), local('SlimbachStd-Medium'),
+        url('SlimbachStd-Medium.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-Medium.woff2') format('woff2'),
+        url('SlimbachStd-Medium.woff') format('woff'),
+        url('SlimbachStd-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-Bold.eot');
+    src: local('ITC Slimbach Std Bold'), local('SlimbachStd-Bold'),
+        url('SlimbachStd-Bold.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-Bold.woff2') format('woff2'),
+        url('SlimbachStd-Bold.woff') format('woff'),
+        url('SlimbachStd-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ITC Slimbach Std';
+    src: url('SlimbachStd-MediumItalic.eot');
+    src: local('ITC Slimbach Std Medium Italic'), local('SlimbachStd-MediumItalic'),
+        url('SlimbachStd-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('SlimbachStd-MediumItalic.woff2') format('woff2'),
+        url('SlimbachStd-MediumItalic.woff') format('woff'),
+        url('SlimbachStd-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
