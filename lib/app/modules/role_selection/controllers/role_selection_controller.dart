@@ -1,10 +1,16 @@
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 
 class RoleSelectionController extends GetxController {
-  final RxString selectedRole = 'user'.obs;
+  Rx<String> selectedRole = ''.obs;  // Holds selected role (user or driver)
+  RxBool isUserLoggedIn = false.obs;  // Check if user is logged in or not
 
-  void setSelectedRole(String value) {
-    selectedRole.value = value;
+  // Set the selected role
+  void setSelectedRole(String role) {
+    selectedRole.value = role;
+  }
+
+  // Set the login status
+  void setLoginStatus(bool status) {
+    isUserLoggedIn.value = status;
   }
 }

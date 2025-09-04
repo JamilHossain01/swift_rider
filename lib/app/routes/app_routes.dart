@@ -12,6 +12,9 @@ abstract class Routes {
   static const RIDE = _Paths.RIDE;
   static const MESSAGE = _Paths.MESSAGE;
   static const MAKE_RESERVATION = _Paths.MAKE_RESERVATION;
+  static const ADD_NEW_CONTACT = _Paths.ADD_NEW_CONTACT;
+  static const DRIVER_HOME_VIEW = _Paths.DRIVER_HOME_VIEW;
+  static const DRIVER_WALLET = _Paths.DRIVER_WALLET;
 }
 
 abstract class _Paths {
@@ -25,4 +28,7 @@ abstract class _Paths {
   static const RIDE = '/ride';
   static const MESSAGE = '/message';
   static const MAKE_RESERVATION = '/make-reservation';
+  static const ADD_NEW_CONTACT = '/add-new-contact';
+  static const DRIVER_HOME_VIEW = '/driver-home-view';
+  static const DRIVER_WALLET = '/driver-wallet';
 }

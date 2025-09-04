@@ -1,7 +1,13 @@
 import 'package:get/get.dart';
 
+import '../modules/add_new_contact/bindings/add_new_contact_binding.dart';
+import '../modules/add_new_contact/views/add_new_contact_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/driver_home_view/bindings/driver_home_view_binding.dart';
+import '../modules/driver_home_view/views/driver_home_view_view.dart';
+import '../modules/driver_wallet/bindings/driver_wallet_binding.dart';
+import '../modules/driver_wallet/views/driver_wallet_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/make_reservation/bindings/make_reservation_binding.dart';
@@ -49,7 +55,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DASHBOARD,
-      page: () => const DashboardView(),
+      page: () => const UserDashboardView(),
       binding: DashboardBinding(),
     ),
     GetPage(
@@ -69,8 +75,23 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MAKE_RESERVATION,
-      page: () =>  MakeReservationView(),
+      page: () => MakeReservationView(),
       binding: MakeReservationBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_NEW_CONTACT,
+      page: () => const AddNewContactView(),
+      binding: AddNewContactBinding(),
+    ),
+    // GetPage(
+    //   name: _Paths.DRIVER_HOME_VIEW,
+    //   page: () =>  DriverHomeViewView(),
+    //   binding: DriverHomeViewBinding(),
+    // ),
+    GetPage(
+      name: _Paths.DRIVER_WALLET,
+      page: () =>  DriverWalletView(),
+      binding: DriverWalletBinding(),
     ),
   ];
 }

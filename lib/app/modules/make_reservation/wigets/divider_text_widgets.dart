@@ -64,10 +64,13 @@ class _DividerTextWidgetsState extends State<DividerTextWidgets> {
                         _showMapOnly = true; // show only map address
                       });
                     },
-                    child: Image.asset(
-                      AppImages.map,
-                      width: 20.w,
-                      height: 20.h,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Image.asset(
+                        AppImages.map,
+                        width: 20.w,
+                        height: 20.h,
+                      ),
                     ),
                   ),
                   SizedBox(width: 8.w),

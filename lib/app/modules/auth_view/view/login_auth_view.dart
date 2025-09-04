@@ -104,7 +104,7 @@ class SignInView extends StatelessWidget {
                     onTap: () {
                       // Example: Check if Remember Me is enabled
                       print('Remember Me: ${controller.rememberMe.value}');
-                      Get.to(() => DashboardView());
+                      Get.to(() => UserDashboardView());
                     },
                     iconWant: false,
                     btnText: 'Log in',

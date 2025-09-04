@@ -70,6 +70,9 @@ class AppImages {
   static String settings = "assets/images/Location-Icon (2).png"; // Note: "rideS" might be a typo, consider "rides"
   static String logOut = "assets/images/Location-Icon (3).png"; // Note: "rideS" might be a typo, consider "rides"
   static String leftArrow = "assets/images/left-arrow (1) 1 (2).png"; // Note: "rideS" might be a typo, consider "rides"
+  static String greenTick = "assets/images/accept-check-good-mark-ok-tick-svgrepo-com 1.png"; // Note: "rideS" might be a typo, consider "rides"
+  static String topArrow = "assets/images/left-arrow (1) 1 (3).png"; // Note: "rideS" might be a typo, consider "rides"
+  static String downArrow = "assets/images/down_arrow.png"; // Note: "rideS" might be a typo, consider "rides"
 //Home
   static String bell = "assets/images/bellN.png"; // Note: "rideS" might be a typo, consider "rides"
 
@@ -81,6 +84,15 @@ class AppImages {
   static String editeS = "assets/images/editeS.png";
   static String map = "assets/images/maos.png";
   static String plane = "assets/images/plane.png";
+  static String taxi = "assets/images/taxi.png";
+  static String wallet = "assets/images/wallet.png";
+  static String cardDetails = "assets/images/carDetails.png";
+  static String medal = "assets/images/medal 1.png";
+  static String bmw = "assets/images/bmw.png";
+  static const String earth = "assets/images/earth.png";
+  static const String idCard = "assets/images/idCard.png";
+  static const String locationD = "assets/images/locationD.png";
+  static const String scan = "assets/images/scan.png";
 
 
 }

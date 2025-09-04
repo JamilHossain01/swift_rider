@@ -15,4 +15,10 @@ class AppColors {
   static Color reservationDropBorderTextColor = Color(0xFFF2F4F7);
   static Color blueToggle = Color(0xFF153AFE);
   static Color grayToggle = Color(0xFFF2F4F7);
+  //History screen colors text
+  static Color hTitleColor = Color(0xFF1D2939);
+  static Color hsubTitleColor = Color(0xFF475467);
+  static Color btmShift6Color = Color(0xFF5C5C5C);
+
+
 }

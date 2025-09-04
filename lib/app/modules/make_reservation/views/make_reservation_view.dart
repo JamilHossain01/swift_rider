@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:swift_ride/app/common widget/home_screen_app_bar.dart';
 import 'package:swift_ride/app/common%20widget/custom_button_widget.dart';
 import 'package:swift_ride/app/common%20widget/home_text_field.dart';
+import 'package:swift_ride/app/routes/app_pages.dart';
 import 'package:swift_ride/app/uitilies/app_colors.dart';
 import 'package:swift_ride/app/uitilies/app_images.dart';
 
 import '../../../common widget/custom text/custom_text_widget.dart';
+import '../../../common widget/custom text/row_common_text_widgets.dart';
 import '../../../common widget/log_in_field.dart';
 import '../controllers/make_reservation_controller.dart';
 import '../wigets/contact_card_widgets.dart';
@@ -64,8 +66,10 @@ class MakeReservationView extends GetView<MakeReservationController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 CustomText(
+                                  fontWeight: FontWeight.w400,
                                   text: "Search for booking contact",
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
+
                                   color: Color(0xFF475467),
                                 ),
                                 Icon(
@@ -81,11 +85,23 @@ class MakeReservationView extends GetView<MakeReservationController> {
                         if (isExpanded)
                           Padding(
                             padding: EdgeInsets.only(top: 10.h),
-                            child: ContactCard(
-                              name: "Istak Ahmed",
-                              email: "istakm2739@gmail.com",
-                              phone: "+880 1234569819",
-                              initials: "IA",
+                            child: Column(
+                              children: [
+                                ContactCard(
+                                  name: "Istak Ahmed",
+                                  email: "istakm2739@gmail.com",
+                                  phone: "+880 1234569819",
+                                  initials: "IA",
+                                ),
+                                SizedBox(height: 10.h,),
+                                CustomButtonWidget(btnColor: Colors.white,
+                                    btnTextColor: AppColors.privacyTextColor,
+                                    borderColor: AppColors.reservationDropBorderTextColor,
+                                    btnText: 'Create new contact', onTap: (){
+                                  Get.toNamed(Routes.ADD_NEW_CONTACT);
+
+                                    }, iconWant: false)
+                              ],
                             ),
                           ),
                       ],
@@ -110,7 +126,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
                   child: DropdownButton<String>(
                     hint: CustomText(
                       text: "Order Type*",
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
                       color: Color(0xFF475467),
                     ),
                     icon: Icon(
@@ -272,20 +289,77 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 text: "Additional Info",
                 showEditIcon: true,
               ),
-              SizedBox(height: 10.h),
 
               HomeCustomTextField(
                 labelText: 'Passenger Count',
                 hintText: 'Passenger Count',
-              ),   SizedBox(height: 10.h),
+              ),
 
               HomeCustomTextField(
                 labelText: 'Trip Notes',
                 hintText: 'Trip Notes',
               ),
-              SizedBox(height: 10.h),
 
+              Divider(),
               LuggageWidget(),
+              Divider(),
+              SizedBox(height: 2.h,),
+              CustomText(
+                text: 'Vehicle',
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: AppColors.privacyTextColor,
+              ),
+              Divider(),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.w,
+                ),
+                decoration: BoxDecoration(
+                  border:
+                  Border.all(color: AppColors.reservationDropBorderTextColor),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    hint: CustomText(
+                      text: "Select",
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xFF475467),
+                    ),
+                    icon: Icon(
+                      Icons.expand_more,
+                      color: Color(0xFF98A2B3),
+                    ),
+                    iconSize: 24,
+                    elevation: 0,
+                    style: TextStyle(color: Colors.grey[600], fontSize: 16.sp),
+                    onChanged: (String? newValue) {
+                      // Handle selection logic here if needed
+                    },
+                    items: <String>[
+                      'Sub',
+                      'Sedan',
+                      'Tesla',
+                      'Private'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: CustomText(
+                          text: value,
+                          fontSize: 16.sp,
+                          color: Colors.black,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10.h,),
+
               CustomText(
                 text: 'Pricing',
                 fontSize: 16.sp,
@@ -299,22 +373,31 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 fontWeight: FontWeight.w500,
                 color: AppColors.privacyTextColor,
               ),
-              SizedBox(height: 10.h),
 
               HomeCustomTextField(
                 labelText: 'Enter Amount',
                 hintText: 'Enter Amount',
               ),
-              SizedBox(height: 10.h),
-              SizedBox(
-                width: 150,
-                child: CustomButtonWidget( btnColor: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    borderColor: AppColors.blueToggle,
-                    btnTextColor: AppColors.blueToggle,
-                    btnText:'Add Pricing', onTap: (){}, iconWant:false),
+              // SizedBox(
+              //   width: 150,
+              //   child: CustomButtonWidget( btnColor: Colors.white,
+              //       borderRadius: BorderRadius.circular(8),
+              //       borderColor: AppColors.blueToggle,
+              //       btnTextColor: AppColors.blueToggle,
+              //       btnText:'Add Pricing', onTap: (){}, iconWant:false),
+              // ),
+              // SizedBox(height: 20.h),
+              RowTexCommonWidgets(
+                text1: 'Base Rate',
+                text2: "\$110.00",
               ),
-              SizedBox(height: 20.h),
+              Divider(),
+              RowTexCommonWidgets(
+                text1: 'Total',
+                text2: "\$150.00",
+              ),
+              SizedBox(height: 10.h,),
+
 
               CustomText(
                 text: 'Internal Comments',
@@ -324,8 +407,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
               ),
               Divider(),
               HomeCustomTextField(
-                labelText: 'Comment',
-                hintText: 'Comment...',
+                labelText: 'Comment...',
+                hintText: 'Comment',
               ),
 
               SizedBox(height: 20.h),
@@ -386,4 +469,5 @@ class MakeReservationView extends GetView<MakeReservationController> {
     );
   }
 }
+
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:swift_ride/app/common%20widget/custom%20text/custom_text_widget.dart';
-import 'package:swift_ride/app/common%20widget/custom_divider.dart';
+import 'package:swift_ride/app/common widget/custom text/custom_text_widget.dart';
+import 'package:swift_ride/app/common widget/custom_divider.dart';
+import 'package:swift_ride/app/modules/role_selection/views/welcome_driver_view.dart';
 import 'package:swift_ride/app/modules/role_selection/views/welcome_view.dart';
 import 'package:swift_ride/app/uitilies/app_colors.dart';
 import 'package:swift_ride/app/uitilies/app_images.dart';
@@ -22,9 +23,9 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(AppImages.role),
-            SizedBox(width: 100,
+            SizedBox(
+              width: 100,
               child: CustomDivider(
-
                 color: Colors.grey,
               ),
             ),
@@ -48,7 +49,6 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
             ),
             SizedBox(height: 20.h),
 
-
             _buildOptionContainer('user', 'As a User'),
             SizedBox(height: 15.h),
             _buildOptionContainer('driver', 'As a Driver'),
@@ -66,10 +66,14 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
       return GestureDetector(
         onTap: () {
           if (!isSelected) {
-            controller.setSelectedRole(value);
-            Future.delayed(const Duration(seconds: 1), () {
-              Get.to(() => WelcomeVIew());
-            });
+            controller.setSelectedRole(value); // Update the selected role
+
+            // Navigate to the appropriate screen after selecting the role
+            if (value == 'user') {
+              Get.to(() => WelcomeUserVIew()); // Navigate to User Dashboard
+            } else {
+              Get.to(() => WelcomeDriverVIew()); // Navigate to Driver Dashboard
+            }
           }
         },
         child: Container(
@@ -91,7 +95,10 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
               Radio<String>(
                 value: value,
                 groupValue: controller.selectedRole.value,
-                onChanged: (_) {}, // Disabled to avoid double navigation
+                onChanged: (newValue) {
+                  // Allow for the change to be captured, but navigation is handled in onTap
+                  controller.setSelectedRole(newValue!);
+                },
                 activeColor: Colors.blue,
               ),
             ],

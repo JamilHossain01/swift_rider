@@ -37,18 +37,27 @@ class LuggageWidget extends StatelessWidget {
               children: [
                 CustomText(
                   text: 'Luggage',
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.blueToggle, // You can use a custom color like AppColors.privacyTextColor
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF3A86FF), // You can use a custom color like AppColors.privacyTextColor
                 ),
                 Row(
                   children: [
                     // Display total luggage count dynamically
-                    CustomText(
-                      text: luggageController.totalLuggage.toString(),
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black, // You can customize this color
+                    Row(
+                      children: [
+                        CustomText(
+                          text: luggageController.totalLuggage.toString(),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black, // You can customize this color
+                        ),    CustomText(
+                          text: "Total",
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black, // You can customize this color
+                        ),
+                      ],
                     ),
                     Icon(
                       luggageController.isExpanded.value

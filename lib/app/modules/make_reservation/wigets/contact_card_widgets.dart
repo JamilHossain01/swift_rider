@@ -36,8 +36,8 @@ class ContactCard extends StatelessWidget {
               CustomText(
                 text: "Booking / Billing Contact",
                 fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF333333),
               ),
               Image.asset(AppImages.deleteCard,height: 24,width: 24,),
             ],

@@ -8,8 +8,8 @@ import 'package:swift_ride/app/uitilies/app_images.dart';
 import '../../../common widget/custom_app_bar_widget.dart';
 import '../controllers/dashboard_controller.dart';
 
-class DashboardView extends GetView<DashboardController> {
-  const DashboardView({super.key});
+class UserDashboardView extends GetView<DashboardController> {
+  const UserDashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {

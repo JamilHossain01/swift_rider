@@ -11,8 +11,8 @@ import '../../../routes/app_pages.dart';
 import '../../auth_view/view/login_auth_view.dart';
 import '../controllers/role_selection_controller.dart';
 
-class WelcomeVIew extends GetView<RoleSelectionController> {
-  const WelcomeVIew({super.key});
+class WelcomeUserVIew extends GetView<RoleSelectionController> {
+  const WelcomeUserVIew({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,28 +21,19 @@ class WelcomeVIew extends GetView<RoleSelectionController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              child: Image.asset(AppImages.role),
-            ),
-            CustomText(
-              text: 'Drive with SwiftRider',
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.center,
-              fontSize: 16.sp,
-              color: Colors.black,
-            ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 100.h),
 
-            CustomText(
-              text: 'Earn extra money by driving.',
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.center,
-              fontSize: 16.sp,
-              color: Colors.black,
+            SizedBox(
+              child: Image.asset(AppImages.role,height: 216.h,width: 207.w,),
             ),
-            SizedBox(height: 180.h),
+
+            SizedBox( width: 100.w,
+                child: Divider()),
+            SizedBox(height: 50.h),
+
 
             CustomButtonWidget(
               btnText: 'Log in',
