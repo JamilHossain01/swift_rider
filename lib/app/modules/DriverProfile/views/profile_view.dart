@@ -10,6 +10,7 @@ import '../../../uitilies/app_images.dart';
 import '../../driver_wallet/views/driver_wallet_view.dart';
 import '../../profile/views/edite_profile_view.dart';
 import '../../driver_side/driver_dashboard/driver_setting/views/setting_view.dart';
+import '../../role_selection/views/role_selection_view.dart';
 import '../controllers/profile_controller.dart';
 import 'custom_support_screen.dart';
 
@@ -18,6 +19,55 @@ class DriverProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    void handleLogout() {
+      showDialog(
+        context: context,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+            title: CustomText(
+              text: 'Log Out',
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.privacyTextColor,
+            ),
+            content: CustomText(
+              text: 'Are you sure you want to log out?',
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400,
+              color: Color(0xFF475467),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: CustomText(
+                  text: 'Cancel',
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(dialogContext).pop(); // Close dialog
+                  // Optional: Add logout logic here (e.g., clear auth: controller.logout();)
+                  Get.offAll(() => const RoleSelectionView()); // Navigate and clear stack
+                },
+                child: CustomText(
+                  text: 'Log Out',
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: HomeCustomAppBar(title: 'Profile',showBackButton: false,),
       body: Padding(
@@ -116,7 +166,7 @@ class DriverProfileView extends GetView<ProfileController> {
                   Get.to(() => DriverSettingView());
                 }),
                 _buildDashedDivider(),
-                _buildMenuItem(AppImages.logOut, 'Log out', () {}),
+                _buildMenuItem(AppImages.logOut, 'Log out', () { handleLogout();}),
 
                 /// Add extra gap after last item
                 SizedBox(height: 10.h),
