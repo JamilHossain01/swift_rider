@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:swift_ride/app/common widget/home_screen_app_bar.dart';
 import 'package:swift_ride/app/common%20widget/custom_button_widget.dart';
 import 'package:swift_ride/app/common%20widget/home_text_field.dart';
+import 'package:swift_ride/app/modules/make_reservation/wigets/trip_type_button.dart';
 import 'package:swift_ride/app/routes/app_pages.dart';
 import 'package:swift_ride/app/uitilies/app_colors.dart';
 import 'package:swift_ride/app/uitilies/app_images.dart';
@@ -11,6 +12,7 @@ import 'package:swift_ride/app/uitilies/app_images.dart';
 import '../../../common widget/custom text/custom_text_widget.dart';
 import '../../../common widget/custom text/row_common_text_widgets.dart';
 import '../../../common widget/log_in_field.dart';
+import '../../dashboard/views/dashboard_view.dart';
 import '../controllers/make_reservation_controller.dart';
 import '../wigets/contact_card_widgets.dart';
 import '../wigets/date_time_widgets.dart';
@@ -41,7 +43,7 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 text: "Order Details",
               ),
               SizedBox(height: 10.h),
-          
+
               // "Search for booking contact" expandable section
               SizedBox(
                 width: double.infinity,
@@ -59,7 +61,7 @@ class MakeReservationView extends GetView<MakeReservationController> {
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color:
-                                      AppColors.reservationDropBorderTextColor),
+                                  AppColors.reservationDropBorderTextColor),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Row(
@@ -69,7 +71,6 @@ class MakeReservationView extends GetView<MakeReservationController> {
                                   fontWeight: FontWeight.w400,
                                   text: "Search for booking contact",
                                   fontSize: 14.sp,
-
                                   color: Color(0xFF475467),
                                 ),
                                 Icon(
@@ -93,14 +94,19 @@ class MakeReservationView extends GetView<MakeReservationController> {
                                   phone: "+880 1234569819",
                                   initials: "IA",
                                 ),
-                                SizedBox(height: 10.h,),
-                                CustomButtonWidget(btnColor: Colors.white,
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                CustomButtonWidget(
+                                    btnColor: Colors.white,
                                     btnTextColor: AppColors.privacyTextColor,
-                                    borderColor: AppColors.reservationDropBorderTextColor,
-                                    btnText: 'Create new contact', onTap: (){
-                                  Get.toNamed(Routes.ADD_NEW_CONTACT);
-
-                                    }, iconWant: false)
+                                    borderColor: AppColors
+                                        .reservationDropBorderTextColor,
+                                    btnText: 'Create new contact',
+                                    onTap: () {
+                                      Get.toNamed(Routes.ADD_NEW_CONTACT);
+                                    },
+                                    iconWant: false)
                               ],
                             ),
                           ),
@@ -110,7 +116,7 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 ),
               ),
               SizedBox(height: 10.h),
-          
+
               // "Order Type*" dropdown
               Container(
                 width: double.infinity,
@@ -118,8 +124,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
                   horizontal: 12.w,
                 ),
                 decoration: BoxDecoration(
-                  border:
-                      Border.all(color: AppColors.reservationDropBorderTextColor),
+                  border: Border.all(
+                      color: AppColors.reservationDropBorderTextColor),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: DropdownButtonHideUnderline(
@@ -159,35 +165,42 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 ),
               ),
               SizedBox(height: 20.h),
-          
+
               DividerTextWidgets(
                 text: "Trip Type",
               ),
               Container(
                 decoration: BoxDecoration(
-                  border:
-                      Border.all(color: AppColors.reservationDropBorderTextColor),
+                  border: Border.all(color: AppColors.reservationDropBorderTextColor),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Obx(() => _buildButton(
-                        'Hourly', _selectedButton, AppImages.clockWhite)),
-                    Obx(() => _buildButton(
-                        'One Way', _selectedButton, AppImages.boltLeft)),
-                    Obx(() => _buildButton(
-                        'Round Trip', _selectedButton, AppImages.boltLeft)),
+                    // Define the button list with data for text, icon, and button value
+                    ...['Hourly', 'One Way', 'Round Trip'].map((buttonText) {
+                      String assetPath = buttonText == 'Hourly'
+                          ? AppImages.clockWhite
+                          : AppImages.boltLeft;
+
+                      return Expanded(
+                        child: TripButtonWidget(
+                          buttonText: buttonText,        // Passing buttonText
+                          selectedButton: _selectedButton, // Passing selectedButton (RxString)
+                          assetPath: assetPath,           // Passing assetPath
+                        ),
+                      );
+                    }).toList(),
                   ],
                 ),
               ),
               SizedBox(height: 20.h),
-          
+
               DividerTextWidgets(
                 text: "Trip Details",
               ),
               SizedBox(height: 10.h),
-          
+
               ContactCard(
                 name: "Istak Ahmed",
                 email: "istakm2739@gmail.com",
@@ -195,51 +208,53 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 initials: "IA",
               ),
               SizedBox(height: 20.h),
-          
+
               // DividerTextWidgets(
               //   text: "Date & Time",
               // ),
               // SizedBox(height: 10.h),
 
-
-    Column(
-      children: [
-        DividerTextWidgets(
-          text: "Date & Time",
-        ),
-        SizedBox(height: 10.h),
-        DateandTimeWidgets(
-          title: 'Pick-up Date',
-          assetPath: AppImages.calensers1, // Assuming this path is defined in AppImages
-          selectedDate: pickUpDate,
-          selectedTime: pickUpTime, // Time is null initially
-        ),
-        SizedBox(height: 10.h),
-        DateandTimeWidgets(
-          title: 'Pick-up Time',
-          assetPath: AppImages.time, // Assuming this path is defined in AppImages
-          selectedDate: pickUpDate,
-          selectedTime: pickUpTime,
-        ),
-        SizedBox(height: 10.h),
-        DateandTimeWidgets(
-          title: 'Drop-off Date',
-          assetPath: AppImages.calensers1, // Assuming this path is defined in AppImages
-          selectedDate: dropOffDate,
-          selectedTime: dropOffTime, // Time is null initially
-        ),
-        SizedBox(height: 10.h),
-        DateandTimeWidgets(
-          title: 'Drop-off Time',
-          assetPath: AppImages.time, // Assuming this path is defined in AppImages
-          selectedDate: dropOffDate,
-          selectedTime: dropOffTime,
-        ),
-      ],
-    ),
+              Column(
+                children: [
+                  DividerTextWidgets(
+                    text: "Date & Time",
+                  ),
+                  SizedBox(height: 10.h),
+                  DateandTimeWidgets(
+                    title: 'Pick-up Date',
+                    assetPath: AppImages.calensers1,
+                    // Assuming this path is defined in AppImages
+                    selectedDate: pickUpDate,
+                    selectedTime: pickUpTime, // Time is null initially
+                  ),
+                  SizedBox(height: 10.h),
+                  DateandTimeWidgets(
+                    title: 'Pick-up Time',
+                    assetPath: AppImages.time,
+                    // Assuming this path is defined in AppImages
+                    selectedDate: pickUpDate,
+                    selectedTime: pickUpTime,
+                  ),
+                  SizedBox(height: 10.h),
+                  DateandTimeWidgets(
+                    title: 'Drop-off Date',
+                    assetPath: AppImages.calensers1,
+                    // Assuming this path is defined in AppImages
+                    selectedDate: dropOffDate,
+                    selectedTime: dropOffTime, // Time is null initially
+                  ),
+                  SizedBox(height: 10.h),
+                  DateandTimeWidgets(
+                    title: 'Drop-off Time',
+                    assetPath: AppImages.time,
+                    // Assuming this path is defined in AppImages
+                    selectedDate: dropOffDate,
+                    selectedTime: dropOffTime,
+                  ),
+                ],
+              ),
 
               SizedBox(height: 10.h),
-
 
               DividerTextWidgets(
                 text: "Pick-Up",
@@ -251,7 +266,6 @@ class MakeReservationView extends GetView<MakeReservationController> {
                     hintText: 'Address',
                   ),
                 ],
-
                 fields: [
                   HomeCustomTextField(
                     labelText: 'Arrival Airport',
@@ -267,10 +281,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
                     labelText: 'Flight',
                     hintText: 'Flight',
                   ),
-
                 ],
               ),
-
 
               SizedBox(height: 10.h),
 
@@ -283,7 +295,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
               HomeCustomTextField(
                 labelText: 'Address',
                 hintText: 'Address',
-              ),  SizedBox(height: 10.h),
+              ),
+              SizedBox(height: 10.h),
 
               DividerTextWidgets(
                 text: "Additional Info",
@@ -303,7 +316,9 @@ class MakeReservationView extends GetView<MakeReservationController> {
               Divider(),
               LuggageWidget(),
               Divider(),
-              SizedBox(height: 2.h,),
+              SizedBox(
+                height: 2.h,
+              ),
               CustomText(
                 text: 'Vehicle',
                 fontSize: 16.sp,
@@ -317,8 +332,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
                   horizontal: 12.w,
                 ),
                 decoration: BoxDecoration(
-                  border:
-                  Border.all(color: AppColors.reservationDropBorderTextColor),
+                  border: Border.all(
+                      color: AppColors.reservationDropBorderTextColor),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: DropdownButtonHideUnderline(
@@ -339,12 +354,8 @@ class MakeReservationView extends GetView<MakeReservationController> {
                     onChanged: (String? newValue) {
                       // Handle selection logic here if needed
                     },
-                    items: <String>[
-                      'Sub',
-                      'Sedan',
-                      'Tesla',
-                      'Private'
-                    ].map<DropdownMenuItem<String>>((String value) {
+                    items: <String>['Sub', 'Sedan', 'Tesla', 'Private']
+                        .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: CustomText(
@@ -358,7 +369,9 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 ),
               ),
 
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
 
               CustomText(
                 text: 'Pricing',
@@ -396,8 +409,9 @@ class MakeReservationView extends GetView<MakeReservationController> {
                 text1: 'Total',
                 text2: "\$150.00",
               ),
-              SizedBox(height: 10.h,),
-
+              SizedBox(
+                height: 10.h,
+              ),
 
               CustomText(
                 text: 'Internal Comments',
@@ -412,7 +426,14 @@ class MakeReservationView extends GetView<MakeReservationController> {
               ),
 
               SizedBox(height: 20.h),
-              CustomButtonWidget(btnText: 'Submit', onTap: (){}, iconWant: false)
+              CustomButtonWidget(
+                btnText: 'Submit',
+                onTap: () {
+                  Get.to(()=> UserDashboardView());
+                },
+                iconWant: false,
+                btnColor: AppColors.mainColor,
+              )
 
               // Add more widgets as needed
             ],
@@ -422,52 +443,4 @@ class MakeReservationView extends GetView<MakeReservationController> {
     );
   }
 
-  Widget _buildButton(
-      String buttonText, RxString selectedButton, String assestPath) {
-    return GestureDetector(
-      onTap: () {
-        selectedButton.value = buttonText; // Update selected button
-      },
-      child: Container(
-        margin: EdgeInsets.all(8.0),
-        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        decoration: BoxDecoration(
-          color: selectedButton.value == buttonText
-              ? AppColors.blueToggle
-              : AppColors.grayToggle,
-          borderRadius: BorderRadius.circular(30.0),
-          border: Border.all(
-            color: selectedButton.value == buttonText
-                ? AppColors.blueToggle
-                : AppColors.grayToggle,
-            width: 2.0,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          // Ensures row only takes up as much space as needed
-          children: [
-            // Display icon only if needed. Adjust image size as necessary.
-            Image.asset(
-              assestPath, // Make sure the image path is correct
-              width: 14.w,
-              height: 14.h,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(width: 4.0), // Space between image and text
-            CustomText(
-              text: buttonText,
-              fontWeight: FontWeight.w500,
-              fontSize: 12.sp,
-              color: selectedButton.value == buttonText
-                  ? Colors.white
-                  : Colors.black,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
-
-

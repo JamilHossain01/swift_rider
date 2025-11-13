@@ -6,6 +6,7 @@ import 'package:swift_ride/app/common%20widget/custom%20text/custom_text_widget.
 import 'package:swift_ride/app/uitilies/app_colors.dart';
 import 'package:swift_ride/app/uitilies/app_images.dart';
 
+import '../../../common widget/custom_app_bar_widget.dart';
 import '../../../common widget/custom_button_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../auth_view/view/login_auth_view.dart';
@@ -17,6 +18,8 @@ class WelcomeUserVIew extends GetView<RoleSelectionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
       backgroundColor: AppColors.bgColor,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -27,10 +30,11 @@ class WelcomeUserVIew extends GetView<RoleSelectionController> {
             SizedBox(height: 100.h),
 
             SizedBox(
-              child: Image.asset(AppImages.role,height: 216.h,width: 207.w,),
+              child:
+              Image.asset(AppImages.role,height: 234.h,width: 216.w,),
             ),
 
-            SizedBox( width: 100.w,
+            SizedBox( width: 80.w,
                 child: Divider()),
             SizedBox(height: 50.h),
 

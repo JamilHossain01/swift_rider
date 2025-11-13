@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:swift_ride/app/common%20widget/custom_button_widget.dart';
 import 'package:swift_ride/app/uitilies/app_colors.dart';
 
-import '../../../../../common controller/custom_phone_field.dart';
-import '../../../../../common widget/custom text/custom_text_widget.dart';
-import '../../../../../common widget/home_screen_app_bar.dart';
-import '../../../../../common widget/log_in_field.dart';
-import '../../../../../uitilies/app_images.dart';
+import '../../../common controller/custom_phone_field.dart';
+import '../../../common widget/custom text/custom_text_widget.dart';
+import '../../../common widget/home_screen_app_bar.dart';
+import '../../../common widget/log_in_field.dart';
+import '../../../uitilies/app_images.dart';
 
 class DriverEditProfileScreen extends StatelessWidget {
   // final TextEditingController nameController =

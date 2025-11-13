@@ -13,7 +13,7 @@ import '../modules/home/views/home_view.dart';
 import '../modules/make_reservation/bindings/make_reservation_binding.dart';
 import '../modules/make_reservation/views/make_reservation_view.dart';
 import '../modules/message/bindings/message_binding.dart';
-import '../modules/message/views/message_view.dart';
+import '../modules/message/views/chat_list.dart';
 import '../modules/on_boarding/bindings/on_boarding_binding.dart';
 import '../modules/on_boarding/views/on_boarding_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -24,13 +24,15 @@ import '../modules/role_selection/bindings/role_selection_binding.dart';
 import '../modules/role_selection/views/role_selection_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
+import '../modules/spalsh/bindings/spalsh_binding.dart';
+import '../modules/spalsh/views/spalsh_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ON_BOARDING;
+  static const INITIAL = Routes.SPALSH;
 
   static final routes = [
     GetPage(
@@ -63,11 +65,11 @@ class AppPages {
       page: () => const ProfileView(),
       binding: ProfileBinding(),
     ),
-    GetPage(
-      name: _Paths.RIDE,
-      page: () => const RideView(),
-      binding: RideBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.RIDE,
+    //   page: () =>  USerHistoryView(),
+    //   binding: RideBinding(),
+    // ),
     GetPage(
       name: _Paths.MESSAGE,
       page: () => MessageView(),
@@ -90,8 +92,13 @@ class AppPages {
     // ),
     GetPage(
       name: _Paths.DRIVER_WALLET,
-      page: () =>  DriverWalletView(),
+      page: () => DriverWalletView(),
       binding: DriverWalletBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPALSH,
+      page: () =>  SplashView(),
+      binding: SpalshBinding(),
     ),
   ];
 }

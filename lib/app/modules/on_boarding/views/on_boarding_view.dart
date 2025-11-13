@@ -64,7 +64,7 @@ class OnBoardingView extends StatelessWidget {
 
                   // Actual content
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 1.h),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -79,7 +79,7 @@ class OnBoardingView extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
-                        SizedBox(height: 12.h),
+                        SizedBox(height: 8.h),
                         CustomText(
                           text: 'From daily commutes to special trips, we’re here to take you wherever you need to go with ease.',
                           fontWeight: FontWeight.w400,
@@ -90,7 +90,9 @@ class OnBoardingView extends StatelessWidget {
                         SizedBox(height: 10.h),
                         CustomButtonWidget(btnText: 'Get Started Now', onTap: (){
                           Get.toNamed(Routes.ROLE_SELECTION);
-                        }, iconWant: false,btnColor: AppColors.buttonColor,)
+                        }, iconWant: false,btnColor: AppColors.buttonColor,),
+                        SizedBox(height: 10.h),
+
 
                       ],
                     ),

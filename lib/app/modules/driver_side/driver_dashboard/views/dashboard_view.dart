@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swift_ride/app/modules/home/views/home_view.dart';
-import 'package:swift_ride/app/modules/message/views/message_view.dart';
+import 'package:swift_ride/app/modules/message/views/chat_list.dart';
 import 'package:swift_ride/app/modules/profile/views/profile_view.dart';
 import 'package:swift_ride/app/modules/ride/views/ride_view.dart';
 import 'package:swift_ride/app/uitilies/app_images.dart';
+import '../../../DriverProfile/views/profile_view.dart';
 import '../../../driver_home_view/views/driver_home_view_view.dart';
+import '../../../driver_ride/views/ride_view.dart';
 import '../controllers/dashboard_controller.dart';
-import '../profileDriver/views/profile_view.dart';
 
 class DriverDashboardView extends GetView<DashboardController> {
   const DriverDashboardView({super.key});
@@ -17,9 +18,10 @@ class DriverDashboardView extends GetView<DashboardController> {
     final controller = Get.put(DashboardController());
 
     final screens = [
+
       MapScreen(),
       MessageView(),
-      RideView(),
+      DriverHistoryView(),
 
       DriverProfileView(),
 

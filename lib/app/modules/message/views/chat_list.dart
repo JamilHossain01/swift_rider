@@ -6,6 +6,7 @@ import 'package:swift_ride/app/uitilies/app_images.dart';
 import '../../../common widget/home_screen_app_bar.dart';
 import '../controllers/message_controller.dart';
 import '../widgest/chat_list.dart';
+import 'chat_view.dart';
 
 class MessageView extends GetView<MessageController> {
   MessageView({super.key});
@@ -46,7 +47,6 @@ class MessageView extends GetView<MessageController> {
     AppImages.profile1,
     AppImages.profile1,
     AppImages.profile1,
-
   ];
 
   final List<double> ratings = [
@@ -64,15 +64,23 @@ class MessageView extends GetView<MessageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeCustomAppBar(title: 'Message',showBackButton: false,),
+      appBar: HomeCustomAppBar(
+        title: 'Message',
+        showBackButton: false,
+      ),
       body: ListView.builder(
         itemCount: names.length,
         itemBuilder: (context, index) {
-          return ChatListCard(
-            profileImage: images[index],
-            name: names[index],
-            subtitle: subtitles[index],
-            rating: ratings[index],
+          return GestureDetector(
+            onTap: () {
+              Get.to(() => ChatScreen());
+            },
+            child: ChatListCard(
+              profileImage: images[index],
+              name: names[index],
+              subtitle: subtitles[index],
+              rating: ratings[index],
+            ),
           );
         },
       ),

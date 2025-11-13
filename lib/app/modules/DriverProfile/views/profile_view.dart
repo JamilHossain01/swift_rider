@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import 'package:swift_ride/app/common%20widget/home_screen_app_bar.dart';
 import 'package:swift_ride/app/modules/setting/views/setting_view.dart';
 
-import '../../../../../common widget/custom text/custom_text_widget.dart';
-import '../../../../../uitilies/app_colors.dart';
-import '../../../../../uitilies/app_images.dart';
-import '../../../../driver_wallet/views/driver_wallet_view.dart';
-import '../../driver_setting/views/setting_view.dart';
+import '../../../common widget/custom text/custom_text_widget.dart';
+import '../../../uitilies/app_colors.dart';
+import '../../../uitilies/app_images.dart';
+import '../../driver_wallet/views/driver_wallet_view.dart';
+import '../../profile/views/edite_profile_view.dart';
+import '../../driver_side/driver_dashboard/driver_setting/views/setting_view.dart';
 import '../controllers/profile_controller.dart';
 import 'custom_support_screen.dart';
 
@@ -18,7 +19,7 @@ class DriverProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeCustomAppBar(title: 'Profile'),
+      appBar: HomeCustomAppBar(title: 'Profile',showBackButton: false,),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
@@ -107,7 +108,7 @@ class DriverProfileView extends GetView<ProfileController> {
                 _buildDashedDivider(),
                 _buildMenuItem(AppImages.customerSupport, 'Customer Support',
                     () {
-                  Get.to(() => DriverSettingView());
+                  Get.to(() => EditProfileScreen());
                   Get.to(() => DriverCustomerSupportScreen());
                 }),
                 _buildDashedDivider(),

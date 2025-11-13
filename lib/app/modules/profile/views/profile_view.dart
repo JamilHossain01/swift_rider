@@ -2,21 +2,75 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:swift_ride/app/common%20widget/home_screen_app_bar.dart';
+import 'package:swift_ride/app/modules/message/views/chat_list.dart';
+import 'package:swift_ride/app/modules/message/views/chat_view.dart';
+import 'package:swift_ride/app/modules/profile/views/payment_screen.dart';
 import 'package:swift_ride/app/modules/setting/views/setting_view.dart';
 import '../../../common widget/custom text/custom_text_widget.dart';
 import '../../../uitilies/app_colors.dart';
 import '../../../uitilies/app_images.dart';
+import '../../DriverProfile/views/custom_support_screen.dart';
 import '../controllers/profile_controller.dart';
 import 'custom_support_screen.dart';
+import 'package:swift_ride/app/modules/role_selection/views/role_selection_view.dart'; // Import for RoleSelectionView
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HomeCustomAppBar(title: 'Profile'),
+    // Define logout callback here to capture context
+    void handleLogout() {
+      showDialog(
+        context: context,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+            title: CustomText(
+              text: 'Log Out',
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.privacyTextColor,
+            ),
+            content: CustomText(
+              text: 'Are you sure you want to log out?',
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400,
+              color: Color(0xFF475467),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: CustomText(
+                  text: 'Cancel',
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(dialogContext).pop(); // Close dialog
+                  // Optional: Add logout logic here (e.g., clear auth: controller.logout();)
+                  Get.offAll(() => const RoleSelectionView()); // Navigate and clear stack
+                },
+                child: CustomText(
+                  text: 'Log Out',
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.red,
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
 
+    return Scaffold(
+      appBar: HomeCustomAppBar(title: 'Profiles'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
@@ -63,17 +117,19 @@ class ProfileView extends GetView<ProfileController> {
                 SizedBox(height: 20.h),
 
                 /// Menu List
-                _buildMenuItem(AppImages.payment, 'Payment',(){}),
-                _buildDashedDivider(),
-                _buildMenuItem(AppImages.customerSupport, 'Customer Support',(){                    Get.to(()=>SettingView());
-                Get.to(()=>CustomerSupportScreen());
+                _buildMenuItem(AppImages.payment, 'Payment', () {
+                  Get.to(() => PaymentScreen());
                 }),
                 _buildDashedDivider(),
-                _buildMenuItem(AppImages.settings, 'Settings',(){
-                  Get.to(()=>SettingView());
+                _buildMenuItem(AppImages.customerSupport, 'Customer Support', () {
+                  Get.to(() => DriverCustomerSupportScreen());
                 }),
                 _buildDashedDivider(),
-                _buildMenuItem(AppImages.logOut, 'Log out',(){}),
+                _buildMenuItem(AppImages.settings, 'Settings', () {
+                  Get.to(() => SettingView());
+                }),
+                _buildDashedDivider(),
+                _buildMenuItem(AppImages.logOut, 'Log out', handleLogout),
 
                 /// Add extra gap after last item
                 SizedBox(height: 10.h),
@@ -122,17 +178,24 @@ class ProfileView extends GetView<ProfileController> {
         builder: (context, constraints) {
           final dashWidth = 6.0;
           final dashHeight = 1.5;
-          final dashCount = (constraints.maxWidth / (2 * dashWidth)).floor();
+          final dashSpacing = 4.0; // Space between dashes
+          final totalDashWidth = dashWidth + dashSpacing;
+          final dashCount = (constraints.maxWidth / totalDashWidth).floor();
 
           return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(dashCount, (_) {
-              return SizedBox(
-                width: dashWidth,
-                height: dashHeight,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.grey.shade400),
-                ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: List.generate(dashCount, (index) {
+              return Row(
+                children: [
+                  SizedBox(
+                    width: dashWidth,
+                    height: dashHeight,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.grey.shade400),
+                    ),
+                  ),
+                  if (index < dashCount - 1) SizedBox(width: dashSpacing),
+                ],
               );
             }),
           );

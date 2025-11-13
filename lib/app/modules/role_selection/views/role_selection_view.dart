@@ -10,6 +10,7 @@ import 'package:swift_ride/app/uitilies/app_images.dart';
 
 import '../controllers/role_selection_controller.dart';
 
+
 class RoleSelectionView extends GetView<RoleSelectionController> {
   const RoleSelectionView({super.key});
 
@@ -22,32 +23,16 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AppImages.role),
+            Image.asset(AppImages.role,height: 234.h,width: 216.w,),
             SizedBox(
               width: 100,
               child: CustomDivider(
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 100.h),
 
-            CustomText(
-              text: 'Drive with SwiftRider',
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.center,
-              fontSize: 16.sp,
-              color: Colors.black,
-            ),
 
-            SizedBox(height: 5.h),
-            CustomText(
-              text: 'Earn extra money by driving.',
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.center,
-              fontSize: 16.sp,
-              color: Colors.black,
-            ),
-            SizedBox(height: 20.h),
 
             _buildOptionContainer('user', 'As a User'),
             SizedBox(height: 15.h),
@@ -60,7 +45,7 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
 
   Widget _buildOptionContainer(String value, String label) {
     return Obx(() {
-      final controller = Get.find<RoleSelectionController>();
+      final controller =Get.put(RoleSelectionController());
       final isSelected = controller.selectedRole.value == value;
 
       return GestureDetector(
@@ -68,19 +53,22 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
           if (!isSelected) {
             controller.setSelectedRole(value); // Update the selected role
 
-            // Navigate to the appropriate screen after selecting the role
-            if (value == 'user') {
-              Get.to(() => WelcomeUserVIew()); // Navigate to User Dashboard
-            } else {
-              Get.to(() => WelcomeDriverVIew()); // Navigate to Driver Dashboard
-            }
+            // Add a delay before navigating (optional)
+            Future.delayed(Duration(seconds: 1), () {
+              // Navigate to the appropriate screen after selecting the role
+              if (value == 'user') {
+                Get.to(() => WelcomeUserVIew()); // Navigate to User Dashboard
+              } else {
+                Get.to(() => WelcomeDriverVIew()); // Navigate to Driver Dashboard
+              }
+            });
           }
         },
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isSelected ? Colors.blue.withOpacity(0.1) : Colors.white,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: isSelected ? Colors.blue : Colors.grey),
           ),
@@ -92,14 +80,9 @@ class RoleSelectionView extends GetView<RoleSelectionController> {
                 fontSize: 16.sp,
                 color: isSelected ? Colors.blue : Colors.black,
               ),
-              Radio<String>(
-                value: value,
-                groupValue: controller.selectedRole.value,
-                onChanged: (newValue) {
-                  // Allow for the change to be captured, but navigation is handled in onTap
-                  controller.setSelectedRole(newValue!);
-                },
-                activeColor: Colors.blue,
+              Icon(
+                isSelected ? Icons.check_circle : Icons.circle_outlined,
+                color: isSelected ? Colors.blue : Colors.grey,
               ),
             ],
           ),

@@ -10,6 +10,7 @@ import 'package:swift_ride/app/modules/dashboard/views/dashboard_view.dart';
 
 import '../../../common controller/custom_phone_field.dart';
 import '../../../common widget/custom text/custom_text_widget.dart';
+import '../../../common widget/custom_app_bar_widget.dart';
 import '../../../common widget/custom_button_widget.dart';
 import '../../../common widget/log_in_field.dart';
 import '../../../uitilies/app_colors.dart';
@@ -29,6 +30,8 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(title: 'Log in'),
+
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(

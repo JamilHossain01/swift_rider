@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swift_ride/app/modules/home/views/home_view.dart';
-import 'package:swift_ride/app/modules/message/views/message_view.dart';
+import 'package:swift_ride/app/modules/message/views/chat_list.dart';
 import 'package:swift_ride/app/modules/profile/views/profile_view.dart';
 import 'package:swift_ride/app/modules/ride/views/ride_view.dart';
 import 'package:swift_ride/app/uitilies/app_images.dart';
@@ -18,7 +18,7 @@ class UserDashboardView extends GetView<DashboardController> {
     final screens = [
       HomeView(),
       MessageView(),
-      RideView(),
+      UserHistoryView(),
 
       ProfileView(),
 

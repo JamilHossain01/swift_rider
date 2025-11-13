@@ -93,6 +93,18 @@ class AppImages {
   static const String idCard = "assets/images/idCard.png";
   static const String locationD = "assets/images/locationD.png";
   static const String scan = "assets/images/scan.png";
+  //messages
+  static const String men1 = "assets/images/Avatar (1).png";
+  static const String men2 = "assets/images/Avatar (2).png";
+  static const String calls = "assets/images/call 1.png";
+  static String callIcon = "assets/images/Call-Icon.png";
+  static String cancellIcon = "assets/images/Cancell-Icon.png";
+  static String chatIcon = "assets/images/Chat-Icon.png";
+  static String shareIcon = "assets/images/share.png";
+  static String succes = "assets/images/_x32_0_Success.png";
+  static String card = "assets/images/Add Card.png";
+  static String customSupportP = "assets/images/Frame 1261156179.png";
+  static String audio = "assets/images/Group 341.png";
 
 
 }

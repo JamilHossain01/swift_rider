@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:swift_ride/app/modules/driver_side/driver_dashboard/profileDriver/views/edite_profile_view.dart';
 import 'package:swift_ride/app/modules/setting/views/about_view.dart';
 import 'package:swift_ride/app/modules/setting/views/privacy_policy.dart';
 import 'package:swift_ride/app/modules/setting/views/termOcondition_view.dart';
@@ -10,6 +9,7 @@ import 'package:swift_ride/app/modules/setting/views/termOcondition_view.dart';
 import '../../../../../common widget/custom text/custom_text_widget.dart';
 import '../../../../../common widget/home_screen_app_bar.dart';
 import '../../../../../uitilies/app_colors.dart';
+import '../../../../DriverProfile/views/edite_profile_view.dart';
 import '../../../../profile/views/edite_profile_view.dart';
 import '../../../../profile/views/settings_view.dart';
 import '../controllers/setting_controller.dart';
@@ -46,6 +46,7 @@ class DriverSettingView extends GetView<SettingController> {
             title: 'Edit Profile',
             trailing: Icon(Icons.chevron_right, color: Colors.black),
             onTap: () {
+              // Get.to(()=>DriverEditProfileScreen());
               Get.to(()=>DriverEditProfileScreen());
 
             },

@@ -1,60 +1,83 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
-import 'dart:math';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+class MapController extends GetxController {
+  final Rx<BitmapDescriptor?> startIcon = Rx<BitmapDescriptor?>(null);
+  final Rx<BitmapDescriptor?> endIcon = Rx<BitmapDescriptor?>(null);
+  final RxBool isLoadingIcons = true.obs;
+  final RxList<Marker> markers = <Marker>[].obs;
+  final RxList<Polyline> polylines = <Polyline>[].obs;
+  late LatLng pickupLatLng;
+  late LatLng dropLatLng;
 
-class AppMapController extends ChangeNotifier {
-  LatLng _center = const LatLng(53.326314, -6.552276);
-  double _zoom = 15.0;
-  bool _isOnline = true;
-  int _notificationCount = 12;
-  List<LatLng> _taxiLocations = [
-    const LatLng(53.326514, -6.552076),
-    const LatLng(53.327514, -6.551076),
-    const LatLng(53.325314, -6.553276),
-    const LatLng(53.324314, -6.550276),
-  ];
-
-  LatLng get center => _center;
-  double get zoom => _zoom;
-  bool get isOnline => _isOnline;
-  int get notificationCount => _notificationCount;
-  List<LatLng> get taxiLocations => _taxiLocations;
-
-  void setCenter(LatLng newCenter) {
-    _center = newCenter;
-    notifyListeners();
+  @override
+  void onInit() {
+    super.onInit();
+    pickupLatLng = const LatLng(23.8041, 90.4152); // Dhaka
+    dropLatLng = const LatLng(23.8103, 90.4125);
+    _loadCustomMarkers();
+    _setupMarkers();
+    _getDummyPolyline();
   }
 
-  void setZoom(double newZoom) {
-    _zoom = newZoom;
-    notifyListeners();
-  }
-
-  void toggleOnline() {
-    _isOnline = !_isOnline;
-    notifyListeners();
-  }
-
-  void clearNotifications() {
-    _notificationCount = 0;
-    notifyListeners();
-  }
-
-  void addTaxiLocation(LatLng location) {
-    _taxiLocations.add(location);
-    notifyListeners();
-  }
-
-  void refreshTaxis() {
-    // Simulate taxis moving to new locations
-    _taxiLocations = _taxiLocations.map((location) {
-      return LatLng(
-        location.latitude + (0.001 * (Random().nextDouble() - 0.5)),
-        location.longitude + (0.001 * (Random().nextDouble() - 0.5)),
+  Future<void> _loadCustomMarkers() async {
+    try {
+      startIcon.value = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(size: Size(50, 50)),
+        'assets/start_icon.png',
       );
-    }).toList();
-    notifyListeners();
+      endIcon.value = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(size: Size(50, 50)),
+        'assets/end_icon.png',
+      );
+      isLoadingIcons.value = false;
+    } catch (e) {
+      print("Error loading custom markers: $e");
+      isLoadingIcons.value = false; // Fallback to default behavior
+    }
+  }
+
+  void _setupMarkers() {
+    if (startIcon.value != null && endIcon.value != null) {
+      markers.assignAll([
+        Marker(
+          markerId: const MarkerId("pickup"),
+          position: pickupLatLng,
+          icon: startIcon.value!,
+        ),
+        Marker(
+          markerId: const MarkerId("dropoff"),
+          position: dropLatLng,
+          icon: endIcon.value!,
+        ),
+      ]);
+    } else {
+      // Fallback to default icons
+      markers.assignAll([
+        Marker(
+          markerId: const MarkerId("pickup"),
+          position: pickupLatLng,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+        ),
+        Marker(
+          markerId: const MarkerId("dropoff"),
+          position: dropLatLng,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+        ),
+      ]);
+    }
+  }
+
+  void _getDummyPolyline() {
+    polylines.assignAll([
+      Polyline(
+        polylineId: const PolylineId("dummyRoute"),
+        width: 4,
+        color: Colors.black,
+        points: [pickupLatLng, dropLatLng],
+      ),
+    ]);
   }
 }

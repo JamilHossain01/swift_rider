@@ -17,6 +17,7 @@ import '../../../uitilies/app_images.dart';
 import '../../dashboard/views/dashboard_view.dart';
 import '../controller/password_indicator_controler.dart';
 import '../controller/sign_in_controller.dart';
+import 'login_auth_view.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
@@ -159,7 +160,7 @@ class SignUpView extends StatelessWidget {
                     CustomText(text: "Already have an account?"),
                     SizedBox(width: 5),
                     GestureDetector(
-                      // onTap: () => Get.to(() => VerifyPhoneNumberView()),
+                      onTap: () => Get.to(() => SignInView()),
                       child: CustomText(
                         text: "Log in",
                         fontWeight: FontWeight.bold,

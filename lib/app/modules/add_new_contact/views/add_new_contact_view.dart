@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:swift_ride/app/modules/dashboard/views/dashboard_view.dart';
 
 import '../../../common widget/custom_button_widget.dart';
 import '../../../common widget/home_screen_app_bar.dart';
@@ -19,7 +20,7 @@ class AddNewContactView extends GetView<AddNewContactController> {
     return Scaffold(
       appBar: HomeCustomAppBar(title: 'Add New Contact'),
       body: SingleChildScrollView(  // Wrap the whole body in SingleChildScrollView
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             HomeCustomTextField(
@@ -86,7 +87,9 @@ class AddNewContactView extends GetView<AddNewContactController> {
                     child: CustomButtonWidget(
                       btnColor: AppColors.mainColor,
                       onTap: () {
-                        Get.to(()=>SuccesfullyPageForAll(title: 'Congratulations!', subTitle: 'Your reservation order has been successfully submitted. Once accepted, you will be able to complete your payment.', onTap: () {  },));
+                        Get.to(()=>SuccesfullyPageForAll(title: 'Congratulations!', subTitle: 'Your reservation order has been successfully submitted. Once accepted, you will be able to complete your payment.', onTap: () {
+                          Get.to(()=> UserDashboardView());
+                        },));
                         // Logic to handle adding the new contact
                       },
                       iconWant: false,
